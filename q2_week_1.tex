@@ -1,0 +1,43 @@
+\documentclass[./main.tex]{subfiles}
+\title{}
+\begin{document}
+
+\section{Quarter 2 Week 1 Update}
+
+The simulations have of pedigrees have been generated using using the following process:
+
+\begin{itemize}
+  \item Create symmetric $\alpha$ parameters for a Dirichlet random variable, of size $M+1$, where $F$ is the number of single origin founders for the  pedigree
+  \item Generate $\Vec{S} \sim Dirichlet(alpha)$ of initial parameters for each of the single founding populations and $h$ the admixed population
+  \item Calculate the slope of the admixed population $h$ such that $h$ at maximum generation ($G_m$) back in time is 0. 
+  \item Create a set of new parameters $S$ for the single origin founders and decrease $h$ by a slope step.  The set of new parameters are generated via $S \sim Uniform(min(.002,S_{m}^{m-1}),max(.002,S_{m}^{m-1}),$ where $S_{m}^{m-1}$ is the single origin founder parameter for the previous generation
+  \item Repeat the above process until maximum generation time is reached to generate parameters for the admixture history so now that $\mathbf{S}$ is a matrix 
+  \item Sample parents of a child based on the simulations parameters 
+  \item Assign parents a sample ID based on reference panel if they are a single origin founders
+  \item If not a single origin founder than repeat sampling and assignment of sample ID until all parents are single origin founders
+\end{itemize}
+
+To get enough data we generated 100 pedigrees for each set of parameters, and then generated 100 distinct parameters. So we have a total of 10000 pedigrees.  
+
+\subsection{Simulation of Ethnicty Tracts}
+
+The simulations of the ethnicity tracts are straightforward by using simulation software mishap that uses inheritance patterns to generate ethnicity tracts based on the simulated pedigrees.
+
+Once simulations of ethnicity tracts are generated the goal is to extract the ethnicity tracts and assign which population they came from.   The proportions of the admixed sample's ethnicity tracts should be equal to the proportions that were used to generate the sample at that generation ($S_m$).
+
+\subsection{Determine Inference Model}
+
+The goal is to use some the methodology of likelihood-free inference such as Approximate Bayesian Computing (ABC).  The goal is to learn which parameter set $S$ generates the admixture history of a specific set of samples.
+
+\textbf{Likelihood-free Inference} The estimation problem is closely related to likelihood-free inference (LFI). LFI considers the task of Bayesian inference when the likelihood function of the model is intractable but simulating (sampling) data from the model is possible:
+
+\begin{equation*}
+\begin{gathered}
+v(\Theta|x_{0}) \sim v(\Theta)p(x_{0}|\Theta)
+\end{gathered}
+\end{equation*}
+
+where $x_{0}$ is the observed data, $v(\Theta)$ is the prior over the model parameters $\Theta$, $p(x_{0}|\Theta)$ is the (possibly) non-analytical likelihood function and $v(\Theta|x_{0})$ is the posterior over $\Theta$. We assume that, while we do not have access to the exact likelihood, we can still sample (simulate) data from the model with a simulator: $x \sim p(x|\Theta)$. The task is then to infer $v(\Theta|x_{0})$ given $x_{0}$ and the sampled data: $D = {\Theta_i, xi}^{n}_{i=1}$ where $\Theta \sim p(\Theta), x_i \sim p(x|\Theta)$.  Note that $p(\Theta)$ is not necessarily the prior $v(\Theta)$.
+
+
+\end{document}

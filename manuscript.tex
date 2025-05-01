@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage{arxiv}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}		% Can be removed after putting your text content
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{doi}
+\usepackage{amsmath}
+
+
+\usepackage{amssymb}
+\newcommand{\w}{\ensuremath{\frac{\omega^2}{n}}} % strength of stabilizing
+\newcommand{\trueb}{\ensuremath{\vec{\beta}}} % true effect
+\newcommand{\y}{\ensuremath{{\gamma}}} % selection coefficient
+\newcommand{\bhat}{\ensuremath{\vec{\hat{\beta}}}} % estimate effect size
+\newcommand{\yvec}{\ensuremath{\vec{\gamma}}} % selection coefficient
+
+\newcommand{\af}{\vec{\text{X}}}
+\newcommand{\bsigma}{\ensuremath{\vec{\sigma}}}
+\newcommand{\bpi}{\ensuremath{\vec{\pi}}}
+
+\newcommand{\ld}{\textbf{\textit{R}}}
+\SetKwInput{KwInput}{Input}                % Set the Input
+\SetKwInput{KwOutput}{Output}              % set the Output
+
+\newcommand{\boldbhat}{\ensuremath{\vec{\hat{\beta}}}} % estimate effect 
+\DeclareMathOperator{\Exc}{\mathbb{E}}
+\newcommand{\Lagr}{\mathcal{L}}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{subfiles} % Best loaded last in the preamble
+
+
+\begin{document}
+
+\title{Pedigrees of Recent Admixture}
+\maketitle
+
+\section{Introduction}
+
+Genome sequences are a product of their demographic histories; therefore, knowledge of how genomes have bifurcated can elucidate admixture events.
+
+Investigation into the genetic variation among populations has enabled ancestry estimation of individuals allowing onself to identify the possible geographic location of their ancestors.  This has a spawned variety of research studies in ancestry inference within population genetics that exploit the allele frequency differences to delineate populations or ‘ancestries’ and/or assign individuals to populations.  What complicates this task is the untangling of complex admixtures in human populations that are generated through multiple divergent admixture times or more than a few ancestral populations.  There are numerous methods for dating admixtures separated by the population genetic method: linkage disequilibrium statistical information, or a haplotype-based block-size distribution such as the distribution of the identity by descent tract.  Although these methods have been tested using putative available data from either the HapMap or from the 1000 Genomes Project, many are interested in inferring ancestry of populations thousands from generations ago.  Our goal is to  rather examine the ancestry of more recent populations generated approximately 12 generations ago.  
+
+he abundance of genetic data at Ancestry has allowed us to infer and estimate estimating the historical origins of a sample’s DNA.   In conjunction Ancestry has also created an inference method of a local community a sample may arise from i.e. a community of African Americans from New Orleans vs a community of African Americans from New York City.   This can be thought of as a particular form of assortative mating by admixture where different groups come to have distinct geographic locations, trait preferences, host preferences, or in the case of human populations, social identities.  
+
+Inferring an individual’s genome-wide and locus-specific ancestry—i.e., local ancestry reveals not only that person’s genetic heritage, but also information about the genetic ancestry of his or her parents.   As each parent transmits half of his or her genome to a child,  most realistic way to simulate genetic data for an admixed individual would be to explicitly
+model their pedigree, with its unadmixed founder ancestors, and simulate a meiosis for each of the ancestors.
+
+This would appropriately constrain crossovers to occur only between each ancestor’s two haplotypes, and
+can incorporate crossover interference modeling 26. However, doing this requires the use of data from 2T
+founders, where T is the number of ancestral generations in the pedigree, thus given enough computational power one can produce a single admixed individual from a founding population.
+
+
+
+
+one can recover half the DNA of each parent by analyzing data from a single individual. In practice however, phasing errors and uncertain interchromosomal phase pose substantial challenges to reconstructing the parents’ genomes, although
+methods that analyze multiple siblings and/or use population allele frequencies can be effective 16–18
+.
+
+
+
+To analyze the dataset from Ancestry we compare two different approaches Approximate Bayesian computing (ABC) and Tracts that is a general model to infer admixture histories.  The benefit of ABC is we can simulate large amounts of genetic data using a family pedigree without explicit assumptions on the demographic model.  One can then perform a grid search of the admixture parameters that matches the empirical observations.  
+
+
+\section{Background}
+
+
+
+\section{Methods}
+
+
+
+The pipeline is as follows (see Figure below).  First, we generate a large pedigree dating back to the founding ancestries, which can be admixed or from single origin populations.  Simulate genotypes (the whole genome) from the pedigree using a grid of admixture proportions.  Remove any haplotypes that are not independent.  The sequences generated by the simulation can then be used to identify the ancestry regions using Polly or other admixture software.  The identified ancestry regions generated via the simulation that closely match empirical observations of ancestry regions then represent correct parameters of the simulation. 
+
+
+
+\subfile{./q2_week_1.tex}
+
+\end{document}
